@@ -58,17 +58,25 @@
 		DA5FD9E920BD581500191C82 /* KPITestURL */ = {
 			isa = PBXGroup;
 			children = (
-				DA5FD9EA20BD581500191C82 /* AppDelegate.h */,
+				DA5FDA0020BD72A800191C82 /* didn't use */,
 				DA5FD9EB20BD581500191C82 /* AppDelegate.m */,
-				DA5FD9ED20BD581500191C82 /* ViewController.h */,
 				DA5FD9EE20BD581500191C82 /* ViewController.m */,
+			);
+			path = KPITestURL;
+			sourceTree = "<group>";
+		};
+		DA5FDA0020BD72A800191C82 /* didn't use */ = {
+			isa = PBXGroup;
+			children = (
+				DA5FD9ED20BD581500191C82 /* ViewController.h */,
+				DA5FD9EA20BD581500191C82 /* AppDelegate.h */,
 				DA5FD9F020BD581500191C82 /* Main.storyboard */,
 				DA5FD9F320BD581700191C82 /* Assets.xcassets */,
 				DA5FD9F520BD581700191C82 /* LaunchScreen.storyboard */,
 				DA5FD9F820BD581700191C82 /* Info.plist */,
 				DA5FD9F920BD581700191C82 /* main.m */,
 			);
-			path = KPITestURL;
+			name = "didn't use";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +186,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -236,7 +244,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
