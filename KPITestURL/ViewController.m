@@ -50,7 +50,8 @@
 
 
 - (void)buttonTapped:(UIButton*)button {
-       [self downloadSession:[NSURL URLWithString:@"https://upload.wikimedia.org/wikipedia/commons/d/d6/EPAM_logo.png"]
+    NSArray *links = @[@"http://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c543.png", @"https://upload.wikimedia.org/wikipedia/commons/d/d6/EPAM_logo.png", @"http://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c548.png"];
+       [self downloadSession:[NSURL URLWithString:[links objectAtIndex:2]]
                 withCompletion:^(UIImage * image) {
                     [self showImage:image];
                 }];
