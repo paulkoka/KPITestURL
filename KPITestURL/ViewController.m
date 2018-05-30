@@ -51,41 +51,46 @@
 
 
 - (void)buttonTapped:(UIButton*)button {
-    NSArray *links = @[@"http://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c543.png", @"https://upload.wikimedia.org/wikipedia/commons/d/d6/EPAM_logo.png", @"http://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c548.png", @"https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Sport-PNG/Olympic%20Games%20Rio%202016%20Official%20PNG%20Transparent%20Logo.png?m=1469242502"];
+    NSArray *links = @[@"http://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c543.png",
+                       @"https://upload.wikimedia.org/wikipedia/commons/d/d6/EPAM_logo.png",
+                       @"http://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c548.png",
+                       @"https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Sport-PNG/Olympic%20Games%20Rio%202016%20Official%20PNG%20Transparent%20Logo.png?m=1469242502"];
     
+
+ [self testURLSession:[NSURL URLWithString:[links objectAtIndex:3]]];
     
-//       [self downloadSession:[NSURL URLWithString:[links objectAtIndex:2]] withCompletion:^(UIImage * image) {
-//                    [self showImage:image];
-//                }];
-    
- [self testURLSession:[NSURL URLWithString:[links objectAtIndex:1]]];
     }
-
-
--(void)downloadSession:(NSURL*)url withCompletion:(void(^_Nullable)(UIImage*))completion {
-    
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData* imageData = [NSData dataWithContentsOfURL:url];
-        UIImage *myImage = [UIImage imageWithData:imageData];
-       
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completion(myImage);
-        });
-    });
-}
 
 
 - (void)testURLSession:(NSURL*)url {
      NSURLSession* session = [NSURLSession sharedSession];
-    
     [[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            UIImage *image = [UIImage imageWithData:data];
-             [self showImage:image];
-        });
+        if (error == nil) {
+           
+                UIImage *newImage = [UIImage imageWithData:data];
+                [self showImage:newImage];
+            
+        } else{
+            [self alert];
+        }
+            });
         
-       
-    }]resume] ;};
+      
+    }]resume] ;
+};
+
+
+
+- (void) alert{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Something went wrong. Try again later" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 
 - (void)showImage:(UIImage*)image {
@@ -94,7 +99,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.myImage = [[[UIImageView alloc] initWithImage:image] autorelease];
             self.myImage.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 2);
-            self.myImage.contentMode = UIViewContentModeCenter;
+            self.myImage.contentMode = UIViewContentModeScaleAspectFit;
             [self.view addSubview:self.myImage];
         });
 
